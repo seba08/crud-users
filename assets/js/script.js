@@ -5,6 +5,7 @@ $table = d.querySelector(".crud-table"),
 $template = d.getElementById("crud-template").content,
 $fragment = d.createDocumentFragment(),
 $agregar = d.querySelector(".add"),
+$submit = d.querySelector("·submit"),
 $close = d.querySelector('.close');
 
 
@@ -44,7 +45,7 @@ d.addEventListener("DOMContentLoaded", getAll)
 
 
 d.addEventListener("submit", e=>{
-    if(e.target === $form) e.preventDefault()
+    //if(e.target === $form) e.preventDefault()
 
     if(!e.target._id.value){
         //Create
@@ -61,6 +62,8 @@ d.addEventListener("submit", e=>{
                 estado: e.target.estado.value
             })
         })
+
+        
     }else{
         //Put
         fetch(`http://localhost:8081/users/${e.target._id.value}`, {
@@ -106,7 +109,7 @@ d.addEventListener("click", e=>{
         if(isDeleted){
             setTimeout(() => {
                 location.reload()
-            }, 5000);
+            }, 3000);
             fetch(`http://localhost:8081/users/${e.target.dataset.id}`, {
                 method: "DELETE",
                 body:  $table.insertAdjacentElement("afterend", $error),                    
@@ -114,6 +117,12 @@ d.addEventListener("click", e=>{
             $error.setAttribute("class", "alert alert-danger")
             $error.innerHTML = "Se ha eliminado un Usuario"
         }
+    }
+
+    if(e.target === $submit){
+        d.querySelector('.form-container').classList.add("d-none")
+        d.querySelector(".capa").style.display = "none";
+        location.reload()
     }
 
     if(e.target === $close){

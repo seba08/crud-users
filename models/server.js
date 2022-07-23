@@ -9,10 +9,14 @@ class Server{
         this.port = process.env.PORT || 5000;
 
         //setting
+        this.setting()
         //middlewares
         this.middlewares()
         //routes
         this.routes()        
+    }
+    setting(){
+        this.app.set('json spaces', 2)
     }
     middlewares(){
         this.app.use(express.json())
