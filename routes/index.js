@@ -18,7 +18,7 @@ fs.readdirSync(PAHT_ROUTES).filter(file=>{
     }
 
     router.get('/', (req, res) =>{
-        res.send("INDEX")
+        res.send("INDEX SG")
     })
 })
 
